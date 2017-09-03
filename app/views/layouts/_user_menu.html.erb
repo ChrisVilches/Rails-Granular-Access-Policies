@@ -6,14 +6,14 @@
 
 <p><%= link_to "Principal", root_path %></p>
 
-<% if current_user.permission?("VER_ROLES_PERMISO") %>
+<% if policy(Role).index? %>
 <p><%= link_to "Ver roles y permisos", roles_path %></p>
 <% end %>
 
-<% if current_user.permission?("LEER") %>
+<% if policy(Article).index? %>
 <p><%= link_to "Leer articulos", articles_path %></p>
 <% end %>
 
-<% if current_user.permission?("CREAR") %>
+<% if policy(Article).create? %>
 <p><%= link_to "Crear articulo", new_article_path %></p>
 <% end %>

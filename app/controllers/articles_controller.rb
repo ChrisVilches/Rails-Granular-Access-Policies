@@ -1,6 +1,10 @@
 class ArticlesController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action do
+    authenticate_user!
+    authorize Article
+  end
+
 
   #verify :method => :post, :only => [ :destroy, :create, :update ],
   #  :redirect_to => { :action => :index }
@@ -15,7 +19,6 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.new(article_params)
-    authorize article
     article.user = current_user
     if article.save
       render :json => article

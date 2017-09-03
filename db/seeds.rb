@@ -3,7 +3,9 @@ permission_list = [
   [ 2, "Puede crear", "CREAR", "Descripcion de permiso puede crear" ],
   [ 3, "Puede editar", "EDITAR", "Descripcion de permiso puede editar" ],
   [ 4, "Puede eliminar", "ELIMINAR", "Descripcion de permiso puede eliminar" ],
-  [ 5, "Ver lista de roles", "VER_ROLES_PERMISO", "Este usuario puede ver el listado de roles (y tambien de permisos)" ]
+  [ 5, "Ver lista de roles", "VER_ROLES_PERMISO", "Este usuario puede ver el listado de roles (y tambien de permisos)" ],
+  [ 6, "Editar articulos propios", "EDITAR_PROPIOS", "Puede editar solo los articulos que ha escrito" ],
+  [ 7, "Eliminar articulos propios", "ELIMINAR_PROPIOS", "Puede eliminar solo los articulos que ha escrito" ]
 ]
 
 permission_list.each do |id, title, symbol, description|
@@ -13,7 +15,7 @@ end
 role_list = [
   [ 1, "Administrador absoluto", "Descripcion de administrador absoluto", [1, 2, 3, 4, 5] ],
   [ 2, "Lector", "Descripcion de lector", [1] ],
-  [ 3, "Publicador", "Descripcion de publicador", [2] ],
+  [ 3, "Publicador", "Descripcion de publicador", [2, 6, 7] ],
   [ 4, "Editor", "Descripcion de editor", [3] ],
   [ 5, "Editor y eliminador", "Descripcion, este usuario puede editar y eliminar", [3, 4] ]
 ]
