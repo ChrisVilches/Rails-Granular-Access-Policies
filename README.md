@@ -1,5 +1,7 @@
 # Políticas de acceso
 
+Creada usando `Rails 5.1.3`.
+
 Esta es una aplicación muy sencilla que muestra como granularizar los permisos y roles de usuario de manera dinámica. Los usuarios pueden operar en distintas partes de la aplicación dependiendo de los permisos que posean.
 
 Las gemas utilizadas son `devise` para la autenticación base, y `pundit` para la creación de políticas.
