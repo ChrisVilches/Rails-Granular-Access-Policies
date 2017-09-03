@@ -1,18 +1,22 @@
 <h1>Lista de articulos</h1>
 
-<ul>
-  <% @articles.each do |article| %>
-    <li>
+
+<% @articles.each do |article| %>
+  <div class="panel panel-default">
+
+    <p>
       <% if current_user.permission?("EDITAR") %>
-        <button>Editar</button>
+        <button class="btn"><i class="glyphicon glyphicon-pencil"></i></button>
       <% end %>
 
       <% if current_user.permission?("ELIMINAR") %>
-        <button>Eliminar</button>
+        <button class="btn"><i class="glyphicon glyphicon-remove"></i></button>
       <% end %>
+      Por <%= article.user.email %>
+    </p>
 
-      <small>Por <%= article.user.email %></small>
+    <p>
       <%= article.text %>
-    </li>
-  <% end %>
-</ul>
+    </p>
+  </div>
+<% end %>

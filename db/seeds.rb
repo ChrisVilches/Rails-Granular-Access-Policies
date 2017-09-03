@@ -43,7 +43,7 @@ role_list.each do |id, title, description, permission_ids|
 end
 
 
-User.create! :id => 1, :email => 'felo@gmail.com', :password => '123123', :password_confirmation => '123123', :role_id => 1
+User.create! :id => 1, :email => 'admin@gmail.com', :password => '123123', :password_confirmation => '123123', :role_id => 1
 User.create! :id => 2, :email => 'juan@gmail.com', :password => '123123', :password_confirmation => '123123', :role_id => 2
 User.create! :id => 3, :email => 'pedro@gmail.com', :password => '123123', :password_confirmation => '123123', :role_id => 3
 
