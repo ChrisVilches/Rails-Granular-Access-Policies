@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
     if article.save
       render :json => article
     else
-      render :json => { error: "No se pudo crear" }, :status => :bad_request
+      render :json => article.errors.full_messages, :status => :bad_request
     end
   end
 

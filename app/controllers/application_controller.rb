@@ -5,12 +5,15 @@ class ApplicationController < ActionController::Base
 
   protected
   def policy_fail(exception)
+
+    msg = "No esta autorizado para esta operación."
+
     respond_to do |format|
       format.json {
-        render :json => { :error => "No esta autorizado para esta operación." }, :status => :bad_request
+        render :json => { :error => msg }, :status => :bad_request
       }
       format.html {
-        flash[:error] = "No esta autorizado para esta operación."
+        flash[:error] = msg
         redirect_to root_path
       }
     end

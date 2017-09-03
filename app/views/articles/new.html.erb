@@ -16,8 +16,20 @@ $("#nuevo-articulo-boton").click(function(){
     success: function(response) {
       window.location.reload();
     },
-    error: function(error){
-      console.log(error.responseJSON)
+    error: function(res){
+
+      if(!res.hasOwnProperty('responseJSON')){
+        $.notify("Hubo un error.", "error");
+        return;
+      }
+
+
+      var errors = res.responseJSON;
+
+      for(i in errors){
+        $.notify(errors[i], "error");
+      }
+
     }
   });
 });
