@@ -10,11 +10,9 @@ class ApplicationController < ActionController::Base
         render :json => { :error => "No esta autorizado para esta operación." }, :status => :bad_request
       }
       format.html {
-        flash[:danger] = "No esta autorizado para esta operación."
+        flash[:error] = "No esta autorizado para esta operación."
         redirect_to root_path
       }
     end
-
   end
-
 end
