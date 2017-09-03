@@ -1,24 +1,34 @@
-# README
+# Políticas de acceso
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Esta es una aplicación muy sencilla que muestra como granularizar los permisos y roles de usuario de manera dinámica. Los usuarios pueden operar en distintas partes de la aplicación dependiendo de los permisos que posean.
 
-Things you may want to cover:
+Las gemas utilizadas son `devise` para la autenticación base, y `pundit` para la creación de políticas.
 
-* Ruby version
+Probar con estos distintos usuarios.
 
-* System dependencies
+```
+admin@gmail.com
+juan@gmail.com
+pedro@gmail.com
+```
 
-* Configuration
+Todos con la contraseña `123123`.
 
-* Database creation
+Luego, ver como el menú de la izquierda tiene menos opciones, con cada uno de esos usuarios.
 
-* Database initialization
+También, se puede comprobar que algunos usuarios tienen botones para editar `artículos` y otro usuario no tiene esas opciones. Sólo puede leerlos pero no editarlos.
 
-* How to run the test suite
+## Instalación
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+bundle install
+rake db:drop
+rake db:migrate
+rake db:seed
+```
 
-* Deployment instructions
+Ejecutar con
 
-* ...
+```bash
+rails s
+```
