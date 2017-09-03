@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :articles, :only => [:index, :show, :create, :update, :destroy] 
+  get '/roles', to: 'roles#index'
+
+  resources :articles, :only => [:index, :new, :show, :create, :update, :destroy]
 
 end

@@ -1,0 +1,18 @@
+<h1>Lista de articulos</h1>
+
+<ul>
+  <% @articles.each do |article| %>
+    <li>
+      <% if current_user.permission?("EDITAR") %>
+        <button>Editar</button>
+      <% end %>
+
+      <% if current_user.permission?("ELIMINAR") %>
+        <button>Eliminar</button>
+      <% end %>
+
+      <small>Por <%= article.user.email %></small>
+      <%= article.text %>
+    </li>
+  <% end %>
+</ul>

@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   #  :redirect_to => { :action => :index }
 
   def index
-    render :json => Article.all
+    @articles = Article.all.includes(:user)
   end
 
   def show

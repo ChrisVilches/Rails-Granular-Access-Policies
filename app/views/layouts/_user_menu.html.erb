@@ -1,0 +1,19 @@
+<p>Bienvenido <%= current_user.email %> <%= link_to "Cerrar sesión", destroy_user_session_path %></p>
+
+<p>El rol de este usuario es <%= current_user.role.title %>, el cual tiene <%= current_user.role.permissions.count %> permisos.</p>
+
+<h3>Menu</h3>
+
+<p><%= link_to "Principal", root_path %></p>
+
+<% if current_user.permission?("VER_ROLES_PERMISO") %>
+<p><%= link_to "Ver roles y permisos", roles_path %></p>
+<% end %>
+
+<% if current_user.permission?("LEER") %>
+<p><%= link_to "Leer articulos", articles_path %></p>
+<% end %>
+
+<% if current_user.permission?("CREAR") %>
+<p><%= link_to "Crear articulo", new_article_path %></p>
+<% end %>
