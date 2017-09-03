@@ -1,6 +1,9 @@
 class RolesController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action do
+    authenticate_user!
+    authorize Role
+  end
 
   def index
     @roles = Role.all.includes(:permissions)

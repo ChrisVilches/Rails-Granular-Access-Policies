@@ -7,10 +7,10 @@ class ApplicationController < ActionController::Base
   def policy_fail(exception)
     respond_to do |format|
       format.json {
-        render :json => { :error => "No esta autorizado para esta operación. JSON" }, :status => :bad_request
+        render :json => { :error => "No esta autorizado para esta operación." }, :status => :bad_request
       }
       format.html {
-        flash[:danger] = "No esta autorizado para esta operación. HTML"
+        flash[:danger] = "No esta autorizado para esta operación."
         redirect_to root_path
       }
     end
