@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   #  :redirect_to => { :action => :index }
 
   def index
-    @articles = Article.all.includes(:user)
+    @articles = Article.includes(:user).order('created_at DESC')
   end
 
   def show
@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.new(article_params)
+    authorize article
     article.user = current_user
     if article.save
       render :json => article
