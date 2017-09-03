@@ -6,11 +6,11 @@
 
     <p>
       <% if policy(article).update? %>
-        <button class="btn"><i class="glyphicon glyphicon-pencil"></i></button>
+        <button class="btn" editar-articulo-id="<%= article.id %>"><i class="glyphicon glyphicon-pencil"></i></button>
       <% end %>
 
       <% if policy(article).destroy? %>
-        <button class="btn"><i class="glyphicon glyphicon-remove"></i></button>
+        <button class="btn" eliminar-articulo-id="<%= article.id %>"><i class="glyphicon glyphicon-remove"></i></button>
       <% end %>
       Creado por <%= article.user.email %> <small><%= article.created_at.strftime("el %d de %h %Y a las %H:%M:%S") %></small>
     </p>
@@ -20,3 +20,29 @@
     </p>
   </div>
 <% end %>
+
+
+<script>
+
+$("[eliminar-articulo-id]").click(function(e){
+
+  if(!confirm("Eliminar?")){
+    return;
+  }
+
+  var id = Number($(this).attr("eliminar-articulo-id"));
+
+  var text = $("#nuevo-articulo-input").val();
+
+  $.ajax({
+    url: '/articles/' + id,
+    type: 'DELETE',
+    success: function(response) {
+      window.location.reload();
+    }
+  });
+
+});
+
+
+</script>

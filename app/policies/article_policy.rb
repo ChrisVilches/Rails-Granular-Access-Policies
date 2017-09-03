@@ -8,7 +8,6 @@ class ArticlePolicy < ApplicationPolicy
     user.permission?("CREAR")
   end
 
-
   def update?
     user.permission?("EDITAR") || (record.user_id == user.id && user.permission?("EDITAR_PROPIOS"))
   end
