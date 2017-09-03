@@ -42,8 +42,11 @@ class ArticlesController < ApplicationController
   def destroy
     article = Article.find(params[:id])
     authorize article
-    article.destroy!
-    head :no_content
+    if article.destroy
+      head :no_content
+    else
+      render :json => { error: "No se pudo eliminar" }, :status => :bad_request
+    end
   end
 
   private
