@@ -24,6 +24,30 @@
 
 <script>
 
+
+$("[editar-articulo-id]").click(function(e){
+
+  var nuevo = prompt("Introduzca el nuevo texto.");
+
+  if(!nuevo){
+    return;
+  }
+
+  var id = Number($(this).attr("editar-articulo-id"));
+
+  $.ajax({
+    url: '/articles/' + id,
+    type: 'PATCH',
+    data: JSON.stringify({ text: nuevo }),
+    success: function(response) {
+      window.location.reload();
+    }
+  });
+});
+
+
+
+
 $("[eliminar-articulo-id]").click(function(e){
 
   if(!confirm("Eliminar?")){
@@ -31,9 +55,7 @@ $("[eliminar-articulo-id]").click(function(e){
   }
 
   var id = Number($(this).attr("eliminar-articulo-id"));
-
   var text = $("#nuevo-articulo-input").val();
-
   $.ajax({
     url: '/articles/' + id,
     type: 'DELETE',
@@ -41,7 +63,6 @@ $("[eliminar-articulo-id]").click(function(e){
       window.location.reload();
     }
   });
-
 });
 
 

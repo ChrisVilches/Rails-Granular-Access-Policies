@@ -27,8 +27,17 @@ class ArticlesController < ApplicationController
     end
   end
 
+
   def update
+    article = Article.find(params[:id])
+    authorize article
+    if article.update_attributes(article_params)
+      render :json => article
+    else
+      render :json => article.errors.full_messages, :status => :bad_request
+    end
   end
+
 
   def destroy
     article = Article.find(params[:id])
