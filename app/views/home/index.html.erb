@@ -5,53 +5,65 @@
 <p>El rol de este usuario es <%= @user.role.title %>, el cual tiene <%= @user.role.permissions.count %> permisos.</p>
 
 
-<h1>Permisos posibles en la aplicacion</h1>
+<% if @user.permission?("VER_ROLES_PERMISO") %>
+  <h1>Permisos posibles en la aplicacion</h1>
 
-<ul>
-  <% @permissions.each do |permission| %>
-    <li title="<%= permission.description %>">
-      <%= permission.title %>
-    </li>
-  <% end %>
-</ul>
+  <ul>
+    <% @permissions.each do |permission| %>
+      <li title="<%= permission.description %>">
+        <%= permission.title %>
+      </li>
+    <% end %>
+  </ul>
 
-<h1>Roles existentes en la aplicacion</h1>
+  <h1>Roles existentes en la aplicacion</h1>
 
-<p>Se muestran los roles y los permisos que tiene cada rol.</p>
+  <p>Se muestran los roles y los permisos que tiene cada rol.</p>
 
-<ul>
-  <% @roles.each do |role| %>
-    <li>
-      <span title="<%= role.description %>"><%= role.title %></span>
-      <ul>
-        <% role.permissions.each do |permission| %>
-          <li title="(<%= permission.symbol %>) <%= permission.description %>"><%= permission.title %></li>
+  <ul>
+    <% @roles.each do |role| %>
+      <li>
+        <span title="<%= role.description %>"><%= role.title %></span>
+        <ul>
+          <% role.permissions.each do |permission| %>
+            <li title="(<%= permission.symbol %>) <%= permission.description %>"><%= permission.title %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<% if @user.permission?("LEER") %>
+  <h1>Lista de articulos</h1>
+
+  <ul>
+    <% @articles.each do |article| %>
+      <li>
+        <% if @user.permission?("EDITAR") %>
+          <button>Editar</button>
         <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
+
+        <% if @user.permission?("ELIMINAR") %>
+          <button>Eliminar</button>
+        <% end %>
+
+        <small>Por <%= article.user.email %></small>
+        <%= article.text %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 
-<h1>Lista de articulos</h1>
+<% if @user.permission?("CREAR") %>
+  <input id="nuevo-articulo-input" type="text" placeholder="Escribe algo"></input>
+  <button id="nuevo-articulo-boton">Enviar</button>
+<% end %>
 
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <button>Editar</button>
-      <button>Eliminar</button>
-      <small>Por <%= article.user.email %></small>
-      <%= article.text %>
-    </li>
-  <% end %>
-</ul>
-
-<input id="nuevo-articulo-input" type="text" placeholder="Escribe algo"></input>
-<button id="nuevo-articulo-boton">Enviar</button>
 
 <script>
-
-
 $("#nuevo-articulo-boton").click(function(){
 
   var text = $("#nuevo-articulo-input").val();
@@ -69,11 +81,6 @@ $("#nuevo-articulo-boton").click(function(){
       console.log(error.responseText)
     }
   });
-
-
-
-
 });
-
 
 </script>

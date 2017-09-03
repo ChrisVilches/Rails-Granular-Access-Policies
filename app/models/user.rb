@@ -9,4 +9,8 @@ class User < ApplicationRecord
 
   has_many :articles
 
+  def permission?(permission)
+    role.permissions.any? { |p| p.symbol.upcase == permission }
+  end
+
 end
