@@ -31,3 +31,29 @@ $.ajaxSetup({
 
   }
 });
+
+
+// Crear un helper de handlebars para formatear fechas
+
+Handlebars.registerHelper('dateFormat', function(context, block) {
+
+  function formatDate(date) {
+    var monthNames = [
+      "Enero", "Febrero", "Marzo",
+      "Abril", "Mayo", "Junio", "Julio",
+      "Agosto", "Septiembre", "Octubre",
+      "Noviembre", "Diciembre"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    var ss = date.getSeconds();
+
+    return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + hh + ':' + mm + ':' + ss;
+  }
+
+  return formatDate(new Date(context));
+});

@@ -1,20 +1,2 @@
 <input id="nuevo-articulo-input" type="text" placeholder="Escribe algo"></input>
 <button id="nuevo-articulo-boton">Enviar</button>
-
-
-<script>
-$("#nuevo-articulo-boton").click(function(){
-
-  var text = $("#nuevo-articulo-input").val();
-
-  $.ajax({
-    url: '<%= articles_path %>',
-    type: 'POST',
-    data: JSON.stringify({ text }),
-    success: function(response) {
-      window.location.reload();
-    }
-  });
-});
-
-</script>

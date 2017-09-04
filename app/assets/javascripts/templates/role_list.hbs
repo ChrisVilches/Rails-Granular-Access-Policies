@@ -1,0 +1,12 @@
+<ul>
+  {{#roles}}
+    <li>
+      <span title="{{ this.description }}">{{ this.title }}</span>
+      <ul>
+        {{#permissions}}
+          <li title="{{ this.description }}">{{ this.title }}</li>
+        {{/permissions}}
+      </ul>
+    </li>
+  {{/roles}}
+</ul>

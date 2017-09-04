@@ -2,38 +2,13 @@
 
 <p>Se muestran los roles y los permisos que tiene cada rol.</p>
 
-<ul>
-  <% @roles.each do |role| %>
-    <li>
-      <span title="<%= role.description %>"><%= role.title %></span>
-      <ul>
-        <% role.permissions.each do |permission| %>
-          <li title="<%= permission.description %>"><%= permission.title %></li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
+<div id="role-list"></div>
 
 <h1>Permisos posibles en la aplicacion</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Simbolo</th>
-      <th>Titulo</th>
-      <th>Descripcion</th>
-    </tr>
-  </thead>
+<div id="permission-list"></div>
 
-  <tbody>
-    <% @permissions.each do |permission| %>
-      <tr>
-        <td><code><%= permission.symbol %></code></td>
-        <td><%= permission.title %></td>
-        <td><%= permission.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
 
-</table>
+<script>
+  listRolesPermissions();
+</script>

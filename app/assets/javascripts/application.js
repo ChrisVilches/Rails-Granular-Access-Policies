@@ -13,7 +13,8 @@
 
 //= require rails-ujs
 //= require jquery
-//= require turbolinks
 //= require bootstrap/dist/js/bootstrap
 //= require notify.min
+//= require handlebars
+//= require_tree ./templates
 //= require_tree .

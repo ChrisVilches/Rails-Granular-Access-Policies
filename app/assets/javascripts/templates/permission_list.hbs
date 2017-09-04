@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Simbolo</th>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#permissions}}
+      <tr>
+        <td><code>{{ this.symbol }}</code></td>
+        <td>{{ this.title }}</td>
+        <td>{{ this.description }}</td>
+      </tr>
+    {{/permissions}}
+  </tbody>
+</table>

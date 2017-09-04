@@ -1,0 +1,18 @@
+{{#articles}}
+  <div class="panel panel-default">
+    <p>
+      {{#if this.edit }}
+      <button class="btn" editar-articulo-id="{{ this.id }}"><i class="glyphicon glyphicon-pencil"></i></button>
+      {{/if}}
+
+      {{#if this.destroy }}
+      <button class="btn" eliminar-articulo-id="{{ this.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+      {{/if}}
+
+      Creado por {{ this.user.email }} <small>{{dateFormat this.created_at }}</small>
+    </p>
+
+    <p>{{ this.text }}</p>
+
+  </div>
+{{/articles}}

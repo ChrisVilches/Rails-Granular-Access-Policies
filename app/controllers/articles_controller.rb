@@ -2,13 +2,19 @@ class ArticlesController < ApplicationController
 
   before_action :authenticate_user!
 
-
   #verify :method => :post, :only => [ :destroy, :create, :update ],
   #  :redirect_to => { :action => :index }
 
   def index
     authorize Article
-    @articles = Article.includes(:user).order('created_at DESC')
+
+    respond_to do |format|
+      format.json {
+        @articles = Article.includes(:user).order('created_at DESC')
+        render 'index', formats: 'json', handlers: 'jbuilder'
+      }
+      format.html
+    end
   end
 
   def show

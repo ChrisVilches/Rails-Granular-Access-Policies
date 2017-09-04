@@ -6,7 +6,13 @@ class RolesController < ApplicationController
   end
 
   def index
-    @roles = Role.all.includes(:permissions)
-    @permissions = Permission.all
+    respond_to do |format|
+      format.json {
+        @roles = Role.all.includes(:permissions)
+        @permissions = Permission.all
+        render 'index', formats: 'json', handlers: 'jbuilder'
+      }
+      format.html
+    end
   end
 end

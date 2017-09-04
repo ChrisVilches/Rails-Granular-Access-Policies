@@ -1,69 +1,7 @@
 <h1>Lista de articulos</h1>
 
-
-<% @articles.each do |article| %>
-  <div class="panel panel-default">
-
-    <p>
-      <% if policy(article).update? %>
-        <button class="btn" editar-articulo-id="<%= article.id %>"><i class="glyphicon glyphicon-pencil"></i></button>
-      <% end %>
-
-      <% if policy(article).destroy? %>
-        <button class="btn" eliminar-articulo-id="<%= article.id %>"><i class="glyphicon glyphicon-remove"></i></button>
-      <% end %>
-      Creado por <%= article.user.email %> <small><%= article.created_at.strftime("el %d de %h %Y a las %H:%M:%S") %></small>
-    </p>
-
-    <p>
-      <%= article.text %>
-    </p>
-  </div>
-<% end %>
-
+<div id='article-list'></div>
 
 <script>
-
-
-$("[editar-articulo-id]").click(function(e){
-
-  var nuevo = prompt("Introduzca el nuevo texto.");
-
-  if(!nuevo){
-    return;
-  }
-
-  var id = Number($(this).attr("editar-articulo-id"));
-
-  $.ajax({
-    url: '/articles/' + id,
-    type: 'PATCH',
-    data: JSON.stringify({ text: nuevo }),
-    success: function(response) {
-      window.location.reload();
-    }
-  });
-});
-
-
-
-
-$("[eliminar-articulo-id]").click(function(e){
-
-  if(!confirm("Eliminar?")){
-    return;
-  }
-
-  var id = Number($(this).attr("eliminar-articulo-id"));
-  var text = $("#nuevo-articulo-input").val();
-  $.ajax({
-    url: '/articles/' + id,
-    type: 'DELETE',
-    success: function(response) {
-      window.location.reload();
-    }
-  });
-});
-
-
+  listArticles();
 </script>
