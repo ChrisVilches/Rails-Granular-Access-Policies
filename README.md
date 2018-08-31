@@ -1,3 +1,11 @@
+# English overview
+
+Simple app that shows how to granularize privileges for different types/roles of users.
+
+Depending on the user role, different actions will be seen on the menu. At backend level, these actions will also be validated against a policy to safely check whether the user can execute the action or not.
+
+Using the `pundit` gem this was achieved in a very elegant way.
+
 # Políticas de acceso
 
 Creada usando `Rails 5.1.3`.
